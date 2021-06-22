@@ -15,6 +15,7 @@ export default function NewsCard({ newsItem: { description } }) {
           .map((match) =>
             /https?/.test(match) ? <NewsLink url={match} /> : match
           )}
+         
       </p>
     </article>
   );

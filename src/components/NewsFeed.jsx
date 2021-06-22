@@ -13,7 +13,8 @@ export default function NewsFeed() {
 
   return (
     <ul className="newsfeed">
-      {newsList.map((newsItem) => (
+      {console.log('news are', newsList)}
+      {newsList[0].map((newsItem) => (
         <li>
           <NewsCard newsItem={newsItem} />
         </li>

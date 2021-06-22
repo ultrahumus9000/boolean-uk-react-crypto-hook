@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
           .then((data)=>{ 
             data['status_updates']===undefined? setCryptoList(data): setCryptoList( data['status_updates'])
             });
-      }, [setCryptoList]);
+      }, [setCryptoList,CRIPTO_LIST]);
       
     return [cryptoList,setCryptoList]
 }
