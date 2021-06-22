@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
-import { STATUS_UPDATES } from "../constants";
+
+import useFetch from "./hooks/useCripotolist";
+
 import NewsCard from "./NewsCard";
+import { STATUS_UPDATES } from "../constants";
 
 export default function NewsFeed() {
-  const [newsList, setNewsList] = useState([]);
+  const newsList = useFetch(STATUS_UPDATES)
 
   // You can turn this into a custom hook////////////////////
-  useEffect(
-    () =>
-      fetch(STATUS_UPDATES)
-        .then((resp) => resp.json())
-        .then(({ status_updates }) => setNewsList(status_updates)),
-    [setNewsList]
-  );
+ 
   ///////////////////////////////////////////////////////////
 
   return (

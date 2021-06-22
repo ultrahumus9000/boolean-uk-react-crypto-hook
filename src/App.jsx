@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 
-import { CRIPTO_LIST } from "./constants";
 import MainDetail from "./components/MainDetail";
 import NewsFeed from "./components/NewsFeed";
 import SideList from "./components/SideList";
-
+import useFetch from "./components/hooks/useCripotolist"
+import useSelectedCrypto from "./components/hooks/useSelectedCrypto";
+import {CRIPTO_LIST}  from "./constants"
 //////////////////////////////////////////////////
 //                                              //
 //  Don't forget to check all the code again!!  //
@@ -12,21 +12,15 @@ import SideList from "./components/SideList";
 //////////////////////////////////////////////////
 
 function App() {
-  const [cryptoList, setCryptoList] = useState([]);
-  const [selectedCrypto, setSelectedCripto] = useState(null);
+  const  [cryptoList,setCryptoList]= useFetch(CRIPTO_LIST)
+  const [selectedCrypto,selectCrypto,isSelectedCrypto] = useSelectedCrypto()
 
   // You can turn this into a custom hook////////////////////
-  useEffect(() => {
-    fetch(CRIPTO_LIST)
-      .then((resp) => resp.json())
-      .then(setCryptoList);
-  }, [setCryptoList]);
+ 
+  
   ///////////////////////////////////////////////////////////
 
-  function selectCrypto(selectedId) {
-    setSelectedCripto(selectedId);
-  }
-
+  
   function findCripto(criptoId) {
     return cryptoList.find(({ id }) => id === criptoId);
   }
@@ -38,10 +32,8 @@ function App() {
       )
     );
   }
+ 
 
-  function isSelectedCrypto(id) {
-    return selectedCrypto === id;
-  }
 
   return (
     /* These (<> </>) are called React Fragments, and allow us to return more than one top element */
